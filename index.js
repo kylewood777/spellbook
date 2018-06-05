@@ -1,3 +1,7 @@
+const input=document.querySelector('#input');
+const spells=document.querySelector('#spells');
+
 function changeHeader(){
-  document.querySelector('#secondHeader').textContent = document.querySelector('#input').value
+    spells.innerHTML += `<li>${input.value}</li>`;
+    input.reset();
 }
