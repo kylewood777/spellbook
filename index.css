@@ -123,10 +123,10 @@ body {
     box-shadow: 1px 1px 15px  rgba(0,0,0,0.4);
   }
   
-  ul#spells {
+  /*ul#spells {
    list-style: none;
    padding: 0;
-  }
+  }*/
   
   .details {
     font-size: 0.7em;
