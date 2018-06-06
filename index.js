@@ -1,4 +1,4 @@
-const input=document.querySelector('#input');
+const input=document.querySelector('#spell');
 const spells=document.querySelector('#spells');
 
 function changeHeader(){
