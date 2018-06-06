@@ -138,9 +138,9 @@ body {
 
   .spellColor{
       font-size: 3vw;
-      -webkit-animation: rainbow 3s infinite;
+      -webkit-animation: rainbow 1s infinite;
   }
-  
+
   @-webkit-keyframes rainbow{
 	20%{color: red;}
 	40%{color: yellow;}
