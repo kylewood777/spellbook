@@ -13,13 +13,13 @@
     <h1>Spellbook</h1>
     <form onsubmit='createSpell(); return false;'>
         <div>
-            <input type="text" id='spell' autofocus placeholder="Enter a spell name">
-            <input type="text" id='effectColor' placeholder="Enter the spell color">
+            <input type="text" id='spellNameField' autofocus placeholder="Enter a spell name">
+            <input type="text" id='spellColorField' placeholder="Enter the spell color">
             <input type="submit" value='add'>
         </div>
     </form>
     <main>
-        <ul id="spells"></ul>
+        <ul id="spellList"></ul>
     </main>
     <script src="index.js"></script>
 </body>
