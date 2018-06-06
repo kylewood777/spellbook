@@ -7,8 +7,7 @@ function createSpell(){
         const spellItem=document.createElement("li");
         const spellNameSpan=document.createElement('span');
         spellNameSpan.className='spellName';
-        const spellNameContent=document.createTextNode(spellNameField.value);
-        spellNameSpan.appendChild(spellNameContent);
+        spellNameSpan.appendChild(document.createTextNode(spellNameField.value));
         spellItem.appendChild(spellNameSpan);
         spellItem.appendChild(document.createElement("br"));
         spellItem.appendChild(createSpellColor());
@@ -20,8 +19,7 @@ function createSpell(){
 
 function createSpellColor(){
     const spellColorSpan=document.createElement('span');
-    const spellColorContent=document.createTextNode(spellColorField.value);
-    spellColorSpan.appendChild(spellColorContent);
+    spellColorSpan.appendChild(document.createTextNode(spellColorField.value));
     spellColorSpan.className='spellColor';
     return spellColorSpan;
 }
