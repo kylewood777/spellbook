@@ -3,7 +3,9 @@ const app = {
       const form = document.querySelector('form')
       form.addEventListener('submit', (ev) => {
         ev.preventDefault()
-        this.handleSubmit(ev)
+        if(ev.target.spellName.value){
+          this.handleSubmit(ev)
+        }
       })
     },
 
@@ -12,7 +14,7 @@ const app = {
     deleteItem: function(e){
         e.parentNode.parentNode.removeChild(e.parentNode);
         this.arr.splice(this.arr.indexOf(e.parentNode), 1);
-        console.log(this.arr);
+        //console.log(this.arr);
     },
 
     renderProperty: function(name, value) {
@@ -60,7 +62,7 @@ const app = {
       const list = document.querySelector('#spells')
       list.appendChild(item)
       this.arr.push(item);
-      console.log(this.arr);
+      //console.log(this.arr);
       f.reset()
     },
   }
