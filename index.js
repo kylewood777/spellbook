@@ -4,11 +4,33 @@ class App {
     this.template = document.querySelector('.spell.template')
     this.list = document.querySelector('#spells')
 
+    this.load()
+
     const form = document.querySelector('form')
     form.addEventListener('submit', (ev) => {
       ev.preventDefault()
       this.handleSubmit(ev)
     })
+  }
+
+  load() {
+    // Read JSON from localStorage
+    const spellJSON = localStorage.getItem('spells')
+
+    // Convert JSON back into an array
+    const spellArray = JSON.parse(spellJSON)
+
+    // Load the spells back into the app
+    if (spellArray) {
+      spellArray.forEach(this.addSpell.bind(this))
+    }
+  }
+
+  save() {
+    localStorage.setItem(
+      'spells',
+      JSON.stringify(this.spells)
+    )
   }
 
   renderProperty(name, value) {
@@ -33,6 +55,11 @@ class App {
         el.setAttribute('title', spell[property])
       }
     })
+
+    // Mark it as a favorite, if applicable
+    if (spell.favorite) {
+      item.classList.add('fav')
+    }
 
     // delete button
     item
@@ -86,6 +113,8 @@ class App {
       const nextSpell = this.spells[i + 1]
       this.spells[i + 1] = spell
       this.spells[i] = nextSpell
+
+      this.save()
     }
   }
 
@@ -100,12 +129,14 @@ class App {
     // Only move it if it's not already first
     if (i > 0) {
       // Move it on the page
-    this.list.insertBefore(item, item.previousSibling)
+      this.list.insertBefore(item, item.previousSibling)
 
-    // Move it in the array
-    const previousSpell = this.spells[i - 1]
-    this.spells[i - 1] = spell
-    this.spells[i] = previousSpell
+      // Move it in the array
+      const previousSpell = this.spells[i - 1]
+      this.spells[i - 1] = spell
+      this.spells[i] = previousSpell
+
+      this.save()
     }
   }
 
@@ -113,6 +144,7 @@ class App {
     const button = ev.target
     const item = button.closest('.spell')
     spell.favorite = item.classList.toggle('fav')
+    this.save()
   }
 
   removeSpell(spell, ev) {
@@ -124,6 +156,14 @@ class App {
     // Remove from the array
     const i = this.spells.indexOf(spell)
     this.spells.splice(i, 1)
+
+    this.save()
+  }
+
+  addSpell(spell) {
+    this.spells.push(spell)
+    const item = this.renderItem(spell)
+    this.list.appendChild(item)
   }
 
   handleSubmit(ev) {
@@ -135,14 +175,12 @@ class App {
       favorite: false,
     }
 
-    this.spells.push(spell)
-
-    const item = this.renderItem(spell)
-    this.list.appendChild(item)
+    this.addSpell(spell)
+    this.save()
 
     f.reset()
     f.spellName.focus()
   }
 }
 
-const app=new App();
+const app = new App()
