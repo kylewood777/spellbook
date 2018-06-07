@@ -144,6 +144,11 @@ input.small {
   justify-content: space-between;
 }
 
+.spell.fav{
+  background-color: #dca936;
+  color:black;
+}
+
 .spell .name {
   text-decoration: underline;
   width: 80%;
@@ -176,3 +181,4 @@ button.fav {
 .template {
   display: none;
 }
+

@@ -33,12 +33,22 @@ const app = {
 
     // add the delete button
     item.querySelector('button.delete').addEventListener('click',this.removeSpell.bind(this, spell))
-    
-    //fav
-    
+
+    // fav button
+    item.querySelector('button.fav').addEventListener('click',this.toggleFavorite.bind(this, spell))
+    /*
+    //move down
+    item.querySelector('button.moveDown').addEventListener('click',this.moveDown.bind(this, spell))
+    */
 
 
     return item
+  },
+
+  toggleFavorite: function(spell, ev) {
+    const button = ev.target
+    const item = button.closest('.spell')
+    spell.favorite = item.classList.toggle('fav')
   },
 
   removeSpell: function(spell, ev) {
@@ -50,6 +60,29 @@ const app = {
     // Remove from the array
     const i = this.spells.indexOf(spell)
     this.spells.splice(i, 1)
+  },
+
+  moveDown: function(spell, ev){
+    console.log(this.spells);
+    if(this.spells.indexOf(spell)<this.spells.length-1){
+      // move in the DOM
+      /*const button = ev.target
+      const item = button.closest('.spell')
+      item.parentNode.removeChild(item)*/
+
+      // move in the array
+      const temp={
+        name: spell.name,
+        level: spell.level,
+      }
+      const i=this.spells.indexOf(spell);
+      this.spells[i].name=this.spells[i+1].name;
+      this.spells[i].level=this.spells[i+1].level;
+      this.spells[i+1].name=temp.name;
+      this.spells[i+1].level=temp.level;
+      console.log(this.spells);
+    }
+    
   },
 
   handleSubmit: function(ev) {
