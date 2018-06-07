@@ -167,3 +167,12 @@ input.small {
   color: white;
   background-color: gray;
 }
+
+button.fav {
+  background-color: #F8BE3D;
+  color: black;
+}
+
+.template {
+  display: none;
+}
