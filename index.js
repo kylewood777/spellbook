@@ -6,7 +6,15 @@ const app = {
         this.handleSubmit(ev)
       })
     },
+
     arr: new Array(),
+
+    deleteItem: function(e){
+        e.parentNode.parentNode.removeChild(e.parentNode);
+        this.arr.splice(this.arr.indexOf(e.parentNode), 1);
+        console.log(this.arr);
+    },
+
     renderProperty: function(name, value) {
       const el = document.createElement('span')
       el.classList.add(name)
@@ -33,6 +41,7 @@ const app = {
       const deleteButton = document.createElement('button');
       deleteButton.className='delete';
       deleteButton.textContent='X';
+      deleteButton.setAttribute('onclick', 'app.deleteItem(this);');
       item.appendChild(deleteButton);
       
       return item
@@ -51,7 +60,7 @@ const app = {
       const list = document.querySelector('#spells')
       list.appendChild(item)
       this.arr.push(item);
-      //console.log(this.arr);
+      console.log(this.arr);
       f.reset()
     },
   }
