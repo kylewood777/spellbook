@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Spellbook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-    <img src="skull.png" alt="" id="skull">
-    <img src="quill.png" alt="" id="quill">
-    <h1>Spellbook</h1>
-    <form onsubmit='createSpell(); return false;'>
-        <div>
-            <input type="text" id='spellNameField' autofocus placeholder="Enter a spell name">
-            <input type="text" id='spellColorField' placeholder="Enter the spell color">
-            <input type="submit" value='add'>
-        </div>
-    </form>
-    <main>
-        <ul id="spellList"></ul>
-    </main>
-    <script src="index.js"></script>
+  <img src="skull.png" id="skull" alt="">
+  <img src="quill.png" id="quill" alt="">
+
+  <h1>Spellbook</h1>
+
+  <form>
+    <div>
+      <input
+        type="text"
+        name="spellName"
+        placeholder="Enter a spell name"
+        autofocus
+      >
+      <input
+        type="number"
+        name="level"
+        placeholder="Level"
+        class="small"
+        min="1"
+        max="20"
+      >
+      <button type="submit">Add</button>
+    </div>
+  </form>
+
+  <main>
+    <ul id="spells"></ul>
+  </main>
+
+  <script src="index.js"></script>
 </body>
 </html>
