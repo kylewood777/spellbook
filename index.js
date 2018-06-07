@@ -1,5 +1,5 @@
 class App {
-  init() {
+  constructor() {
     this.spells = []
     this.template = document.querySelector('.spell.template')
     this.list = document.querySelector('#spells')
@@ -19,7 +19,7 @@ class App {
     return el
   }
 
-  renderItemspell() {
+  renderItem(spell) {
     const item = this.template.cloneNode(true)
     item.classList.remove('template')
 
@@ -145,4 +145,4 @@ class App {
   }
 }
 
-app.init()
+const app=new App();
