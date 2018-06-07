@@ -156,3 +156,14 @@ input.small {
 .level {
   color: red;
 }
+
+.delete{
+  text-align: center;
+  vertical-align: center;
+  margin-top: 16px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  color: white;
+  background-color: gray;
+}
