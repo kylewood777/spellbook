@@ -2,6 +2,7 @@ const app = {
   init: function() {
     this.spells = []
     this.template = document.querySelector('.spell.template')
+    this.list = document.querySelector('#spells')
 
     const form = document.querySelector('form')
     form.addEventListener('submit', (ev) => {
@@ -27,22 +28,57 @@ const app = {
 
     properties.forEach(property => {
       const el = item.querySelector(`.${property}`)
-      el.textContent = spell[property]
-      el.setAttribute('title', spell[property])
+      if (el) {
+        el.textContent = spell[property]
+        el.setAttribute('title', spell[property])
+      }
     })
 
-    // add the delete button
-    item.querySelector('button.delete').addEventListener('click',this.removeSpell.bind(this, spell))
+    // delete button
+    item
+      .querySelector('button.delete')
+      .addEventListener(
+        'click',
+        this.removeSpell.bind(this, spell)
+      )
 
     // fav button
-    item.querySelector('button.fav').addEventListener('click',this.toggleFavorite.bind(this, spell))
-    /*
-    //move down
-    item.querySelector('button.moveDown').addEventListener('click',this.moveDown.bind(this, spell))
-    */
+    item
+      .querySelector('button.fav')
+      .addEventListener(
+        'click',
+        this.toggleFavorite.bind(this, spell)
+      )
 
+    // move up
+    item
+      .querySelector('button.up')
+      .addEventListener(
+        'click',
+        this.moveUp.bind(this, spell)
+      )
 
     return item
+  },
+
+  moveUp: function(spell, ev) {
+    // Find the <li>
+    const button = ev.target
+    const item = button.closest('.spell')
+
+    // Find it in the array
+    const i = this.spells.indexOf(spell)
+
+    // Only move it if it's not already first
+    if (i > 0) {
+      // Move it on the page
+    this.list.insertBefore(item, item.previousSibling)
+
+    // Move it in the array
+    const previousSpell = this.spells[i - 1]
+    this.spells[i - 1] = spell
+    this.spells[i] = previousSpell
+    }
   },
 
   toggleFavorite: function(spell, ev) {
@@ -62,47 +98,21 @@ const app = {
     this.spells.splice(i, 1)
   },
 
-  moveDown: function(spell, ev){
-    console.log(this.spells);
-    if(this.spells.indexOf(spell)<this.spells.length-1){
-      // move in the DOM
-      /*const button = ev.target
-      const item = button.closest('.spell')
-      item.parentNode.removeChild(item)*/
-
-      // move in the array
-      const temp={
-        name: spell.name,
-        level: spell.level,
-      }
-      const i=this.spells.indexOf(spell);
-      this.spells[i].name=this.spells[i+1].name;
-      this.spells[i].level=this.spells[i+1].level;
-      this.spells[i+1].name=temp.name;
-      this.spells[i+1].level=temp.level;
-      console.log(this.spells);
-    }
-    
-  },
-
   handleSubmit: function(ev) {
     const f = ev.target
 
     const spell = {
       name: f.spellName.value,
       level: f.level.value,
+      favorite: false,
     }
 
     this.spells.push(spell)
 
     const item = this.renderItem(spell)
-
-    const list = document.querySelector('#spells')
-    list.appendChild(item)
+    this.list.appendChild(item)
 
     f.reset()
     f.spellName.focus()
   },
 }
-
-app.init()

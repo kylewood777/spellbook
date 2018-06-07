@@ -144,11 +144,6 @@ input.small {
   justify-content: space-between;
 }
 
-.spell.fav{
-  background-color: #dca936;
-  color:black;
-}
-
 .spell .name {
   text-decoration: underline;
   width: 80%;
@@ -162,15 +157,9 @@ input.small {
   color: red;
 }
 
-.delete{
-  text-align: center;
-  vertical-align: center;
-  margin-top: 16px;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
+button.delete {
+  background-color: #ff3333;
   color: white;
-  background-color: gray;
 }
 
 button.fav {
@@ -178,7 +167,15 @@ button.fav {
   color: black;
 }
 
+button.move {
+  background-color: #3366FF;
+  color: white;
+}
+
 .template {
   display: none;
 }
 
+.spell.fav {
+  background-color: goldenrod;
+}
