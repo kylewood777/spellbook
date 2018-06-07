@@ -6,7 +6,7 @@ const app = {
         this.handleSubmit(ev)
       })
     },
-  
+    arr: new Array(),
     renderProperty: function(name, value) {
       const el = document.createElement('span')
       el.classList.add(name)
@@ -47,7 +47,8 @@ const app = {
   
       const list = document.querySelector('#spells')
       list.appendChild(item)
-  
+      this.arr.push(item);
+      //console.log(this.arr);
       f.reset()
     },
   }
